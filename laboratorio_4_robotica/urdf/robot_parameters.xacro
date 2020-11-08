@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="link_00_name" value="robot_base" />
+  <xacro:property name="link_01_name" value="link_01" />
+  <xacro:property name="link_02_name" value="link_02" />
+  <xacro:property name="link_03_name" value="finger_1" />
+  <xacro:property name="link_04_name" value="finger_2" />
+  <xacro:property name="joint_01_name" value="joint_1" />
+  <xacro:property name="joint_02_name" value="joint_2" />
+  <xacro:property name="joint_03_name" value="gripper_1" />
+  <xacro:property name="joint_04_name" value="gripper_2" />
+</robot>

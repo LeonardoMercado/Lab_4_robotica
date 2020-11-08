@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="4R_robot">
+
+
+
+     <xacro:include filename="$(find basic_2r_gazebo)/urdf/links_joints.xacro" />
+     <xacro:include filename="$(find basic_2r_gazebo)/urdf/robot_parameters.xacro" />
+     <xacro:include filename="$(find laboratorio_4_robotica)/urdf/my_macros.xacro"/>
+     
+     <link name="world"/>  <!-- Base link from Gazebo-->
+
+     <joint name="fixed" type="fixed"> <!-- Joint to fix the base so it does not move-->
+          <parent link="world"/>
+          <child link="${link_00_name}"/>
+     </joint>
+
+     <xacro:m_link_mesh name="${link_00_name}"
+     origin_xyz="0 0 0"
+     origin_rpy="0 0 0" 
+     meshfile="package://laboratorio_4_robotica/meshes/PincherBase.stl"
+     mass="1"
+     ixx="0.01" ixy="0" ixz="0"
+     iyy="0.01" iyz="0"
+     izz="0.01"	
+     />    
+
+     <xacro:m_joint name="${joint_01_name}" 
+     type="revolute"
+     axis_xyz="0 0 1"
+     origin_rpy="0 0 0" origin_xyz="0 0 0.094375"
+     parent="${link_00_name}" child="${link_01_name}"
+     limit_e="10" limit_l="-3.14" limit_u="3.14" limit_v="5.0" 
+     />
+
+     <xacro:m_link_mesh name="${link_01_name}"
+     origin_xyz="0 0 0.0"
+     origin_rpy="0 0 0" 
+     meshfile="package://laboratorio_4_robotica/meshes/PincherLink1.stl"
+     mass="1"
+     ixx="0.01" ixy="0" ixz="0"
+     iyy="0.01" iyz="0"
+     izz="0.01"	
+     />
+
+     
+
+
+
+
+
+
+
+</robot>
