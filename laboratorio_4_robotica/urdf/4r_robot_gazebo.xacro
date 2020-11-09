@@ -69,8 +69,6 @@
      limit_e="10" limit_l="-3.14" limit_u="3.14" limit_v="5.0" 
      />
 
-
-
      <xacro:m_link_mesh name="link_3"
      origin_xyz="-0.0115 0 0"
      origin_rpy="0 0 0" 
@@ -80,6 +78,73 @@
      iyy="0.01" iyz="0"
      izz="0.01"	
      />
+
+     <xacro:m_joint name="joint_4" 
+     type="revolute"
+     axis_xyz="0 0 1"
+     origin_rpy="0 0 0" origin_xyz="0.107 0 0"
+     parent="link_3" child="link_4"
+     limit_e="10" limit_l="-3.14" limit_u="3.14" limit_v="5.0" 
+     />
+
+
+     <xacro:m_link_mesh name="link_4"
+     origin_xyz="-0.0115 0.0095 0"
+     origin_rpy="3.1516 0 0" 
+     meshfile="package://laboratorio_4_robotica/meshes/PincherTool.stl"
+     mass="0.5"
+     ixx="0.01" ixy="0" ixz="0"
+     iyy="0.01" iyz="0"
+     izz="0.01"	
+     />
+
+     <xacro:m_joint name="gripper_1" 
+     type="prismatic"
+     axis_xyz="0 0 1"
+     origin_rpy="0 0 0" origin_xyz="0.088 0.0001 -0.04"
+     parent="link_4" child="finger_1"
+     limit_e="10" limit_l="0" limit_u="0.02" limit_v="5.0" 
+     />
+
+
+     <xacro:m_link_mesh name="finger_1"
+     origin_xyz="0 0 0"
+     origin_rpy="0 0 0" 
+     meshfile="package://laboratorio_4_robotica/meshes/PincheFinger.stl"
+     mass="0.5"
+     ixx="0.01" ixy="0" ixz="0"
+     iyy="0.01" iyz="0"
+     izz="0.01"	
+     />
+
+     <xacro:m_joint_mimic name="$gripper_2" 
+     type="prismatic"
+     axis_xyz="0 0 1"
+     origin_rpy="3.1416 0 0" origin_xyz="0.088 -0.0001 0.04"
+     parent="link_4" child="finger_2"
+     limit_e="10" limit_l="0" limit_u="0.2" limit_v="5.0"
+     mimic_joint="gripper_1" m_multiplier="1" m_offset="0" 
+     />
+
+     <xacro:m_link_mesh name="finger_2"
+     origin_xyz="0 0 0"
+     origin_rpy="0 0 0" 
+     meshfile="package://laboratorio_4_robotica/meshes/PincheFinger.stl"
+     mass="0.5"
+     ixx="0.01" ixy="0" ixz="0"
+     iyy="0.01" iyz="0"
+     izz="0.01"	
+     />
+
+     <xacro:create_noa name="NOA"
+     origin_xyz="0.305 0 0"
+     origin_rpy="0 1.5708 0" 
+     parent="link_2"
+     />
+
+
+
+
 
 
 
