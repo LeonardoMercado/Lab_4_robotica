@@ -2,9 +2,8 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="4R_robot">
 
 
-
-     <xacro:include filename="$(find basic_2r_gazebo)/urdf/links_joints.xacro" />
-     <xacro:include filename="$(find basic_2r_gazebo)/urdf/robot_parameters.xacro" />
+     <xacro:include filename="$(find laboratorio_4_robotica)/urdf/links_joints.xacro" />
+     <xacro:include filename="$(find laboratorio_4_robotica)/urdf/robot_parameters.xacro" />
      <xacro:include filename="$(find laboratorio_4_robotica)/urdf/my_macros.xacro"/>
      
      <link name="world"/>  <!-- Base link from Gazebo-->

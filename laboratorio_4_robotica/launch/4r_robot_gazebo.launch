@@ -2,10 +2,11 @@
 <launch>
 
 		<!-- Robot Model -->
-        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find laboratorio_4_robotica)/urdf/4r_robot_gazebo.xacro'" />
+          <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find laboratorio_4_robotica)/urdf/4r_robot_gazebo.xacro'" />
 		<arg name="x" default="0"/>
 		<arg name="y" default="0"/>
 		<arg name="z" default="0"/>
+		<arg name="rqt" default="false"/>
 
 		<!-- Load controllers -->
         <rosparam command="load" file="$(find laboratorio_4_robotica)/config/joints.yaml" />
@@ -37,8 +38,7 @@
 		      args="-urdf -param robot_description 
 			  -model 4R_robot -x $(arg x) -y $(arg y) -z $(arg z)" />
 
-
 		<!-- rqt -->
-		<node name="rqt_gui" pkg="rqt_gui" type="rqt_gui" />
+		<node if="$(arg rqt)" name="rqt_gui" pkg="rqt_gui" type="rqt_gui" />
 
 </launch>
