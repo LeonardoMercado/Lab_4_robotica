@@ -2,13 +2,15 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="4R_robot">
 
 
+
+
      <xacro:include filename="$(find laboratorio_4_robotica)/urdf/links_joints.xacro" />
      <xacro:include filename="$(find laboratorio_4_robotica)/urdf/robot_parameters.xacro" />
      <xacro:include filename="$(find laboratorio_4_robotica)/urdf/my_macros.xacro"/>
      
-     <link name="world"/>  <!-- Base link from Gazebo-->
+     <link name="world"/>  
 
-     <joint name="fixed" type="fixed"> <!-- Joint to fix the base so it does not move-->
+     <joint name="fixed" type="fixed"> 
           <parent link="world"/>
           <child link="${link_00_name}"/>
      </joint>
@@ -133,18 +135,18 @@
      ixx="0.00000113" ixy="0" ixz="0"
      iyy="0.00000178" iyz="0"
      izz="0.00000178"	
-     />
+     />     
 
-     <!--
 
+
+     
      <xacro:create_noa name="NOA"
      origin_xyz="0.305 0 0"
      origin_rpy="0 1.5708 0" 
      parent="link_2"
      />
-     -->
+     
 
-     <!-- Gazebo Plugin -->
      <gazebo>
        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
        </plugin>
