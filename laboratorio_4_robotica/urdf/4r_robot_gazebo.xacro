@@ -18,10 +18,10 @@
      origin_xyz="0 0 0"
      origin_rpy="0 0 0" 
      meshfile="package://laboratorio_4_robotica/meshes/PincherBase.stl"
-     mass="1"
-     ixx="0.01" ixy="0" ixz="0"
-     iyy="0.01" iyz="0"
-     izz="0.01"	
+     mass="0.13157953"
+     ixx="0.00025387" ixy="0" ixz="0"
+     iyy="0.00029134" iyz="0"
+     izz="0.00027663"	
      />    
 
      <xacro:m_joint name="joint_1" 
@@ -36,10 +36,10 @@
      origin_xyz="0 0 0.0"
      origin_rpy="0 0 0" 
      meshfile="package://laboratorio_4_robotica/meshes/PincherLink1.stl"
-     mass="1"
-     ixx="0.01" ixy="0" ixz="0"
-     iyy="0.01" iyz="0"
-     izz="0.01"	
+     mass="0.04620776"
+     ixx="0.00001430" ixy="0" ixz="0"
+     iyy="0.00001213" iyz="0"
+     izz="0.00000745"	
      />
 
      <xacro:m_joint name="joint_2" 
@@ -55,10 +55,10 @@
      origin_xyz="-0.011 0 0"
      origin_rpy="0 0 0" 
      meshfile="package://laboratorio_4_robotica/meshes/PincherLink2.stl"
-     mass="1"
-     ixx="0.01" ixy="0" ixz="0"
-     iyy="0.01" iyz="0"
-     izz="0.01"	
+     mass="0.06371406"
+     ixx="0.00004875" ixy="0" ixz="0"
+     iyy="0.00004380" iyz="0"
+     izz="0.00001225"	
      />
 
      <xacro:m_joint name="joint_3" 
@@ -73,10 +73,10 @@
      origin_xyz="-0.0115 0 0"
      origin_rpy="0 0 0" 
      meshfile="package://laboratorio_4_robotica/meshes/PincherLink3.stl"
-     mass="0.5"
-     ixx="0.01" ixy="0" ixz="0"
-     iyy="0.01" iyz="0"
-     izz="0.01"	
+     mass="0.06371399"
+     ixx="0.00004875" ixy="0" ixz="0"
+     iyy="0.00004380" iyz="0"
+     izz="0.00001225"	
      />
 
      <xacro:m_joint name="joint_4" 
@@ -92,10 +92,10 @@
      origin_xyz="-0.0115 0.0095 0"
      origin_rpy="3.1516 0 0" 
      meshfile="package://laboratorio_4_robotica/meshes/PincherTool.stl"
-     mass="0.5"
-     ixx="0.01" ixy="0" ixz="0"
-     iyy="0.01" iyz="0"
-     izz="0.01"	
+     mass="0.06284521"
+     ixx="0.00002262" ixy="0" ixz="0"
+     iyy="0.00002704" iyz="0"
+     izz="0.00002116"	
      />
 
      <xacro:m_joint name="gripper_1" 
@@ -111,18 +111,18 @@
      origin_xyz="0 0 0"
      origin_rpy="0 0 0" 
      meshfile="package://laboratorio_4_robotica/meshes/PincheFinger.stl"
-     mass="0.5"
-     ixx="0.01" ixy="0" ixz="0"
-     iyy="0.01" iyz="0"
-     izz="0.01"	
+     mass="0.00689708"
+     ixx="0.00000113" ixy="0" ixz="0"
+     iyy="0.00000178" iyz="0"
+     izz="0.00000116"	
      />
 
-     <xacro:m_joint_mimic name="$gripper_2" 
+     <xacro:m_joint_mimic name="gripper_2" 
      type="prismatic"
      axis_xyz="0 0 1"
      origin_rpy="3.1416 0 0" origin_xyz="0.088 -0.0001 0.04"
      parent="link_4" child="finger_2"
-     limit_e="10" limit_l="0" limit_u="0.2" limit_v="5.0"
+     limit_e="10" limit_l="0" limit_u="0.02" limit_v="5.0"
      mimic_joint="gripper_1" m_multiplier="1" m_offset="0" 
      />
 
@@ -130,26 +130,25 @@
      origin_xyz="0 0 0"
      origin_rpy="0 0 0" 
      meshfile="package://laboratorio_4_robotica/meshes/PincheFinger.stl"
-     mass="0.5"
-     ixx="0.01" ixy="0" ixz="0"
-     iyy="0.01" iyz="0"
-     izz="0.01"	
+     mass="0.00689708"
+     ixx="0.00000113" ixy="0" ixz="0"
+     iyy="0.00000178" iyz="0"
+     izz="0.00000178"	
      />
+
+     <!--
 
      <xacro:create_noa name="NOA"
      origin_xyz="0.305 0 0"
      origin_rpy="0 1.5708 0" 
      parent="link_2"
      />
+     -->
 
-
-
-
-
-
-
-
-
-
+     <!-- Gazebo Plugin -->
+     <gazebo>
+       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+       </plugin>
+     </gazebo>
 
 </robot>

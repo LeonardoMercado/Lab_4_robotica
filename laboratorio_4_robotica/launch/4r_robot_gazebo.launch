@@ -6,7 +6,23 @@
 		<arg name="x" default="0"/>
 		<arg name="y" default="0"/>
 		<arg name="z" default="0"/>
-          
+
+		<!-- Load controllers -->
+        <rosparam command="load" file="$(find laboratorio_4_robotica)/config/joints.yaml" />
+        
+		<!-- Controllers -->
+		<node name="controller_spawner" pkg="controller_manager" type="spawner"
+		    respawn="false" output="screen" 
+		    args="
+		    joint_state_controller
+		    joint1_position_controller
+		    joint2_position_controller
+		    joint3_position_controller
+		    joint4_position_controller
+		    gripper_position_controller
+		    --timeout 60">
+		</node>
+		
 
 		<!-- Gazebo Initialization -->
 		<include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -19,7 +35,10 @@
 			  type="spawn_model" 
 			  output="screen"
 		      args="-urdf -param robot_description 
-			  -model 4R -x $(arg x) -y $(arg y) -z $(arg z)" />
+			  -model 4R_robot -x $(arg x) -y $(arg y) -z $(arg z)" />
 
+
+		<!-- rqt -->
+		<node name="rqt_gui" pkg="rqt_gui" type="rqt_gui" />
 
 </launch>

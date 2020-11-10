@@ -1,0 +1,22 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50.0
+
+# Position Controllers ---------------------------------------
+joint1_position_controller:
+  type: position_controllers/JointPositionController
+  joint: joint_1
+joint2_position_controller:
+  type: position_controllers/JointPositionController
+  joint: joint_2
+joint3_position_controller:
+  type: position_controllers/JointPositionController
+  joint: joint_3
+joint4_position_controller:
+  type: position_controllers/JointPositionController
+  joint: joint_4
+gripper_position_controller:
+  type: position_controllers/JointGroupPositionController
+  joints:
+   - gripper_1
+   - gripper_2 
