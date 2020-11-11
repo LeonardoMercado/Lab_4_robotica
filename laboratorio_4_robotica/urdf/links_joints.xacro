@@ -67,6 +67,7 @@
       </visual>
     </link>
     <gazebo reference="${name}">
+        <!--<material>Gazebo/WhiteGlow</material>-->
         <material>Gazebo/BlackTransparent</material>
     </gazebo>
  </xacro:macro>

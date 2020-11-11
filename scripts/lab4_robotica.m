@@ -40,14 +40,10 @@ robot.teach;
 %% Modelo cinematico inverso del robot phantom X
 
 close;
-% x = 0.140;
-% y = 0.0;
-% z = 0.084;
-% phi = deg2rad(-90);
-x = 0.1;
-y = 0.0;
-z = 0.34;
-phi = deg2rad(0);
+x = 0.05;
+y = 0.2;
+z = 0.1;
+phi = deg2rad(-90);
 l1 = 0.135875;
 l2 = 0.107;
 l3 = 0.107;
@@ -119,7 +115,7 @@ robot.plot(tg,'workspace', maximo,'noa','view',[30 30]);
 
 %% Puntos de pick and place:
 
-%close;
+close;
 %--------------------------------------------------------------------------
 % Puntos y orientaciones: 
 punto_orientado_1 = [0.2 0.0 0.10 -90];
@@ -170,6 +166,68 @@ disp('Fin punto 7');
 
 tg_8 = jtraj(tg_7(end,:),pose_1,50);
 robot.plot(tg_8,'workspace', maximo,'noa','view',[30 30]);
+
+
+%% Gazebo + matlab + ROS:
+
+rosinit; %inicio nodo matlab.
+
+%% Publicadores a los controladores de las articulaciones:
+
+publicador_joint_1 = rospublisher('/joint1_position_controller/command','std_msgs/Float64');
+pause(1);
+disp('Publicador de la articulación 1 creado...');
+
+publicador_joint_2 = rospublisher('/joint2_position_controller/command','std_msgs/Float64');
+pause(1);
+disp('Publicador de la articulación 2 creado...');
+
+publicador_joint_3 = rospublisher('/joint3_position_controller/command','std_msgs/Float64');
+pause(1);
+disp('Publicador de la articulación 3 creado...');
+
+publicador_joint_4 = rospublisher('/joint4_position_controller/command','std_msgs/Float64');
+pause(1);
+disp('Publicador de la articulación 4 creado...');
+
+
+%% Creación del mensaje de articulaciones
+
+articulacion_1 = rosmessage(publicador_joint_1);
+articulacion_2 = rosmessage(publicador_joint_2);
+articulacion_3 = rosmessage(publicador_joint_3);
+articulacion_4 = rosmessage(publicador_joint_4);
+
+%% Configuración y envio de datos de las articulaciones:
+
+articulacion_1.Data = deg2rad(0);
+articulacion_2.Data = deg2rad(0);
+articulacion_3.Data = deg2rad(0);
+articulacion_4.Data = deg2rad(0);
+
+send(publicador_joint_1,articulacion_1);
+send(publicador_joint_2,articulacion_2);
+send(publicador_joint_3,articulacion_3);
+send(publicador_joint_4,articulacion_4);
+
+%% Creación del suscriptor para verificar la posición de las articulaciones
+
+subcriptor = rossubscriber('/joint_states');
+pause(1);
+
+
+%% Verificación de la posición actual de las articulaciones:
+
+actual_configuracion = receive(subcriptor_configuracion,3);
+disp(actual_configuracion.Position)
+
+
+
+
+
+
+
+
 
 %% 
 function q = solucion(data)
